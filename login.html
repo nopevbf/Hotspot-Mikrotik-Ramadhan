@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoorByte WiFi</title>
+    <link rel="stylesheet" href="css/custom.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/PrayTimes.js"></script>
+    <script type="text/javascript" src="/js/custom.min.js"></script>
+    <script type="module" src="/js/praycustom.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <link rel="icon" href="img/favicon.png" />
+  </head>
+  <body class="utama">
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="mx-auto box-semua">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- logo -->
+                <section class="row">
+                  <div class="col-md-12 text-center">
+                    <img src="img/logo.png"alt="NoorByte WiFi"style="border-radius: 5px;width: 100%;max-width: 150px;height: auto;"/>
+                  </div>
+                </section>
+                <!-- end logo -->
+                <!-- text berjalan -->
+                <section class="row">
+                  <div class="col-auto">
+                    <div class="borderUpDown">
+                      <div class="text-berjalan">
+                        <marquee>Pinjam WiFi sekarang untuk pengalaman internet yang tak tertandingi. Kecepatan tinggi, kenyamanan maksimal. || NoorByte Wifi Hotspot || Gunakan dengan bijak ||</marquee>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- end text berjalan -->
+                <!-- widget solat -->
+                <section class="row">
+                  <div id="widget-sholat" class="widget-sholat">
+                    <div class="widget-sholat-container">
+                      <div class="head">
+                        <div class="title">
+                          <h3>Jadwal Sholat</h3>
+                          <h3>
+                            <div class="sub">
+                              Wilayah Kab. Magelang dan Sekitarnya
+                            </div>
+                            <div id="Date"></div>
+                          </h3>
+                        </div>
+                        <button class="Show toggle-jadwal merahmuda">
+                          Tutup
+                        </button>
+                        <button class="Hide toggle-jadwal birumuda">
+                          Lihat
+                        </button>
+                      </div>
+                      <div class="id-container">
+                        <div class="title">
+                          <div class="desc">Tanggal</div>
+                          <div class="ket">:</div>
+                          <div class="nilai">
+                            <div id="tanggal-hijriah"></div>
+                          </div>
+                        </div>
+                        <div class="title">
+                          <div class="desc">Jam</div>
+                          <div class="ket">:</div>
+                          <div class="nilai">
+                            <div id="jam-kanan"></div>
+                          </div>
+                        </div>
+                        <div class="title">
+                          <div class="desc">Provinsi</div>
+                          <div class="ket">:</div>
+                          <div class="nilai">Jawa Tengah</div>
+                        </div>
+                        <div class="title">
+                          <div class="desc">Kab/Kota</div>
+                          <div class="ket">:</div>
+                          <div class="nilai">Magelang</div>
+                        </div>
+                      </div>
+                      <div id="waktucontainer"></div>
+                      <div class="foot">
+                        <div class="countdown-wrapp">
+                          <h4>
+                            <span>Menyambut Ramadan 1445 H</span>
+                          </h4>
+                          <div id="countdown-inner" class="countdown-inner">
+                            <div class="clock-column">
+                              <p class="clock-day clock-timer"></p>
+                              <p class="clock-label Bhari">Hari</p>
+                            </div>
+
+                            <div class="clock-column">
+                              <p class="clock-hours clock-timer"></p>
+                              <p class="clock-label Bjam">Jam</p>
+                            </div>
+
+                            <div class="clock-column">
+                              <p class="clock-minutes clock-timer"></p>
+                              <p class="clock-label Bmenit">Menit</p>
+                            </div>
+
+                            <div class="clock-column">
+                              <p class="clock-seconds clock-timer"></p>
+                              <p class="clock-label Bdetik">Detik</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- end widget solat -->
+                <!-- desc login -->
+                <section class="row">
+                  <div class="desc-login">
+                    <!-- <p>Silahkan masukkan <b>Username & Password</b></p> -->
+                    <p>Hubungi Pemilik untuk Akses Pinjam</p>
+                    <p>Silahkan masukkan <b>Password</b></p>
+                  </div>
+                </section>
+                <!-- end desc login -->
+                <!-- form login -->
+                <section class="row">
+                  <div class="col-12">
+                    <div class="card-badan">
+                      <div class="login">
+                        <div>
+                          $(if chap-id)
+                          <form name="sendin" action="$(link-login-only)" method="post">
+                            <input type="hidden" name="username" />
+                            <input type="hidden" name="password" />
+                            <input type="hidden" name="dst" value="$(link-orig)" />
+                            <input type="hidden" name="popup" value="true" />
+                          </form>
+
+                          <script type="text/javascript" src="/md5.js"></script>
+                          <script type="text/javascript">
+                            function doLogin() {
+                              document.sendin.username.value = document.login.username.value;
+                              document.sendin.password.value = hexMD5(
+                                "$(chap-id)" + document.login.password.value + "$(chap-challenge)"
+                              );
+                              document.sendin.submit();
+                              return false;
+                            }
+                          </script>
+                          $(endif)
+                          <form
+                            action="$(link-login-only)"
+                            autocomplete="off"
+                            method="post"
+                            name="login"
+                            $(if chap-id)
+                            onSubmit="return doLogin()"
+                            $(endif)>
+                            <input type="hidden" name="dst" value="$(link-orig)"/>
+                            <input type="hidden" name="popup" value="true" />
+                            <input class="form-control-md mr-t-10 text-center" name="username" type="number" value="$(username)" placeholder="Password" id="usernameInput"/>
+                            <input class="form-control-md mr-t-10 text-center" name="password" type="hidden" placeholder="Password" id="passwordInput"/>
+                            <div class="text-center mt-3">
+                              <button type="submit" class="w-100 bg-template btn-md pd-5">
+                                LOGIN
+                              </button>
+                            </div>
+                            <div class="row">
+                              <div class="col-6 col-md-6">
+                                <div class="text-center mt-3">
+                                  <div id="qr" onclick="window.location='https://laksa19.github.io/myqr';" style="background: black" class="w-100 bg-template qr btn-md pd-5">
+                                    QR CODE
+                                  </div>
+                                </div>
+                              </div>
+                              $(if trial == 'yes')
+                              <div class="col-6 col-md-6">
+                                <div class="text-center mt-3">
+                                  <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">
+                                    <div style="background: #00bf63" class="w-100 bg-template trial btn-md pd-5">
+                                      WiFi GRATIS
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              $(elif trial == 'no')
+                              <div class="col-6 col-md-6">
+                                <div class="text-center mt-3">
+                                  <a href="#">
+                                    <div style="background: #fff;color: #888;border: 1px solid #888;" class="w-100 bg-template btn-md pd-5">
+                                      Yah Habis 🥲
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              $(endif)
+                            </div>
+                          </form>
+                        </div>
+                        $(if error)        
+                        <div class="alert bg-danger text-center text-white mt-3">
+                        <span id="infoError">$(error)</span>
+                        </div>
+                        $(endif)
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- end form login -->
+              </div>
+              <div class="col-md-6">
+                <!-- slide image -->
+                <section class="row mt-2">
+                  <div id="harga" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="5000">
+                        <img src="img/harga.png" class="d-block w-100 mySlides" alt="..."/>
+                      </div>
+                      <div class="carousel-item" data-bs-interval="10000">
+                        <img src="img/harga2.png" class="d-block w-100 mySlides" alt="..."/>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- end slide image -->
+                <!-- help button -->
+                <section class="row">
+                  <div class="col-12 col-md-12" style="padding-bottom: 20px">
+                    <div class="text-center">
+                      <button onclick="openWhatsApp()" class="w-5 bg-template-help yesthis btn-md pd-5">
+                        <i class="icon fab fa-whatsapp">&#xf232;</i>🤣 Iya Tombol Ini 🤣<i class="icon fab fa-whatsapp">&#xf232;</i>
+                      </button>
+                    </div>
+                  </div>
+                </section>
+                <!-- end help button -->
+                <!-- ads -->
+                <section class="row">
+                  <div class="col-12 col-md-12">
+                    <div class="carousel slide" id="carouselInterval" data-bs-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                          <img src="img/banner1.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                          <img src="img/banner4.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                          <img src="img/banner2.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                          <img src="img/banner4.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                          <img src="img/banner3.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                          <img src="img/banner4.jpg" class="d-block w-100" alt="..."/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- end ads -->
+                <!-- copyright -->
+                <footer class="footer row">
+                  <div class="text-center text-black-50 m-2" style="font-size: 80%">
+                    &copy; 2024 NoorByte WiFi. All Rights Reserved.
+                  </div>
+                </footer>
+                <!-- end copyright -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- show hide -->
+    <script>
+      // Set Show Hide Jadwal
+      $(".Hide").click(function () {
+        $(".waktu-container, .id-container").show(500);
+        $(".Show").show(0);
+        $(".Hide").hide(0);
+      });
+      $(".Show").click(function () {
+        $(".waktu-container, .id-container").hide(500);
+        $(".Show").hide(0);
+        $(".Hide").show(0);
+      });
+      var myIndex = 0;
+      carousel();
+
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {
+          myIndex = 1;
+        }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 4000);
+      }
+    </script>
+    <!-- countdown -->
+    <script>
+      var clockModule = "Marc 11 2024 0:00:00 GMT+0700";
+      run_clock("countdown-inner", clockModule);
+    </script>
+    <script>
+      var error = "$(error)";
+      var error1 = "user $(username) has reached uptime limit";
+      var error2 = "user $(username) has reached traffic limit";
+      var error3 = "no valid profile found";
+      var error4 = "invalid username or password";
+      var error5 = "user &lt;$(username)&gt; not found";
+      var error6 = "simultaneous session limit reached";
+      if (error == error1 || error == error2 || error == error3){
+        window.location.href = "expired.html";
+      } else if (error == error4){
+        document.getElementById("infoError").innerHTML = "Mohon Periksa Informasi Login Anda";
+      } else if (error == error5){
+        document.getElementById("infoError").innerHTML = "Member atau Voucher Tidak Ditemukan";
+      } else if (error == error6){
+        document.getElementById("infoError").innerHTML = "Jumlah Session Login Telah Dibatasi";											
+      } else {
+        document.getElementById("infoError").innerHTML = "$(error)";
+      }
+    </script>
+    <script>
+      function openWhatsApp() {
+        var url =
+          "https://api.whatsapp.com/send?phone=6285173370796&text=Min%2C%20mau%20nambah%20durasi%20internet%20dong%20%F0%9F%98%82";
+        window.open(url, "_blank");
+      }
+    </script>
+    <script>
+    var usernameInput = document.getElementById('usernameInput');
+    var passwordInput = document.getElementById('passwordInput');
+    usernameInput.addEventListener('input', function() {
+      passwordInput.value = usernameInput.value;
+    }); 
+	</script>
+  </body>
+</html>

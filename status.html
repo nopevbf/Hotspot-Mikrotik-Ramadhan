@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    $(if refresh-timeout)
+    <meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+    $(endif)
+    <title>Status-NoorByte WiFi</title>
+    <link rel="stylesheet" href="css/custom.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/custom.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript">
+    <!--
+    document.addEventListener("DOMContentLoaded", function() {
+        var advertPending = true; // Change this to your condition
+        var linkAdvert = "YOUR_ADVERT_LINK_HERE"; // Change this to your advert link
+        var linkLogout = "YOUR_LOGOUT_LINK_HERE"; // Change this to your logout link
+        
+        var popup = null;
+        
+        function focusAdvert() {
+            if (popup && popup.focus) popup.focus();
+        }
+        
+        function openAdvert() {
+            if (advertPending) {
+                popup = window.open(linkAdvert, 'hotspot_advert', '');
+                setTimeout(focusAdvert, 1000);
+            }
+        }
+        
+        function openLogout() {
+            if (window.name !== 'hotspot_status') return true;
+            window.open(linkLogout, 'hotspot_logout', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=280,height=250');
+            window.close();
+            return false;
+        }
+        
+        // You might need to call openAdvert() somewhere in your HTML or JavaScript logic to trigger the ad opening.
+    });
+    -->
+    </script>
+    <link rel="icon" href="img/favicon.png" />
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="utama">
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto box-semua">
+                    <h3 class="text-center mt-2" id="WelcomeMessage"></h3>
+                    $(if login-by == 'trial')
+                    <div class="text-center" style="margin:10px auto 0px;">
+                        <i class="icon icon-user-circle-o" style="font-size:50px;border-radius: 50%;">&#xf2be;</i>
+                        <h3 style="margin-top: 10px;">Trial User</h3>
+                    </div>
+                    $(elif login-by != 'mac')
+                    <div class="text-center" style="margin:10px auto 0px;">
+                        <i class="icon icon-user-circle-o" style="font-size:50px;border-radius: 50%;">&#xf2be;</i>
+                        <h3 style="margin-top: 10px;">$(username)</h3>
+                    </div>
+                    $(endif)
+                <!-- connected -->
+                    <div class="bg-dark w-100 text-center p-2" style="border-radius:3px;color:#ffffff;font-weight: 600;">
+                        <span>Terhubung : </span>
+                        <span id="konek"></span>
+                    </div>
+                <!-- end connected -->
+                <!-- download upload -->
+                <table class="table text-center no-border mt-3" style="width: 100%;">
+                    <tbody>
+                        <tr>
+                            <td style="padding-bottom: 0px;">
+                            <p style="font-size:12px;margin-bottom:0px;"><i class="icon icon-download">&#xe809;</i> Download</p>
+                            </td>
+                            <td style="padding-bottom: 0px;">
+                            <p style="font-size:12px;margin-bottom:0px;"><i class="icon icon-upload">&#xe80a;</i> Upload</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 0px;">
+                            <p style="font-size:18px;margin:0;">$(bytes-out-nice) </p>
+                            </td>
+                            <td style="padding-top: 0px;">
+                            <p style="font-size:18px;margin:0;">$(bytes-in-nice) </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- end download upload -->
+                <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+                    <!-- info -->
+                <div class="table-responsive-md">
+                    <table class="table table-bordered table-sm">
+                    <tbody>
+                    <tr>
+                        <th scope="row"><i class="icon icon-sitemap">&#xf0e8;</i> IP</th>
+                        <td>$(ip)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><i class="icon icon-qrcode">&#xe814;</i>  MAC</th>
+                        <td>$(mac)</td>
+                    </tr>
+                    $(if remain-bytes-total)
+                    <tr>
+                        <th scope="row" style="width: 50%;"><i class="icon icon-battery-3">&#xf241;</i>  Sisa Kuota</th>
+                        <td>$(remain-bytes-total-nice)</td>
+                    </tr>
+                    $(endif)
+                    $(if session-time-left)
+                    <tr>
+                        <th scope="row"><i class="icon icon-clock-o">&#xf252;</i>  Sisa Waktu</th>
+                        <td id="SisaWaktu"></td>
+                    </tr>
+                    $(else)
+                    <tr>
+                        <th scope="row"><i class="icon icon-clock-o">&#xf252;</i>  Sisa Waktu</th>
+                        <td>Unlimited</td>
+                    </tr>
+                    $(endif)
+                    $(if blocked == 'yes')
+                    <tr>
+                        <th scope="row"><i class="icon icon-ban">&#xf109;</i>  Status</th>
+                        <td>
+                            <div style="color: #ff0000">
+                            <a href="$(link-advert)" target="hotspot_advert" style="font-weight: 600;">IKLAN</a> required
+                            </div>
+                        </td>
+                    </tr>
+                    $(elif refresh-timeout)
+                    <tr>
+                        <th scope="row"><i class="icon icon-arrows-cw">&#xe811;</i>  Refresh</th>
+                        <td id="refresh"></td>
+                    </tr>
+                    $(endif)
+                    <tr>
+                                    <th class="text-center" colspan="2" style="margin-left: 5px;"><i>* Terima kasih telah menggunakan layanan NoorByte.</i></th>
+                                </tr>
+                    </tbody>
+                </table>
+                </div>
+                <!-- end info -->
+                <!-- logout -->
+                $(if login-by != 'yes')
+                <p style="font-size:10px; text-align:center;margin:5px auto;">Tombol <b>LOGOUT</b> dapat menghentikan akses internet</p>
+                <div class="d-grid gap-2 col-6 mx-auto mb-3">
+                <button class="btn btn-outline-danger" type="submit"> <i class="icon icon-off">&#xe813;</i> LOGOUT</button>
+                </div>
+                <!-- end logout -->
+                </form>
+                </div>
+            </div>
+             <!-- copyright -->
+            <footer>
+                <div class="text-center text-black-50 m-2" style="font-size: 80%">
+                &copy; 2024 NoorByte WiFi. All Rights Reserved.
+                </div>
+            </footer>
+            <!-- end copyright -->
+        </div>
+    </main>
+    <script>
+        var time = "$(session-time-left)";
+        var konek = "$(uptime)";
+        var refresh = "$(refresh-timeout)";
+
+        // Replacing abbreviations with full words and adding spaces
+        time = time.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+        konek = konek.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+        refresh = refresh.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+
+        // Replacing abbreviations with full words
+        var waktu = time.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+        var konekWaktu = konek.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+        var refreshWaktu = refresh.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+
+        // Adding separators between each time unit
+        var sisawaktu = waktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+        var konekSisawaktu = konekWaktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+        var refreshSisawaktu = refreshWaktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+
+        // Setting inner HTML of elements
+        document.getElementById('konek').innerHTML = konekSisawaktu;
+        document.getElementById('SisaWaktu').innerHTML = sisawaktu;
+        document.getElementById('refresh').innerHTML = refreshSisawaktu;
+    </script>
+
+    <script>
+        var Messages = new Date(),
+            Hours = Messages.getHours();
+        var greetingMessage = Hours >= 5 && Hours < 12 ? "Selamat Pagi" :
+                              Hours >= 12 && Hours < 15 ? "Selamat Siang" :
+                              Hours >= 15 && Hours < 18 ? "Selamat Sore" :
+                              Hours >= 18 && Hours < 24 ? "Selamat Malam" : "Selamat Malam menjelang Pagi";
+        document.getElementById("WelcomeMessage").innerHTML = greetingMessage;
+    </script>
+    <script>
+        var hostnName = "$([[/ip dhcp-server lease get [find address=$host] host-name]])"
+        document.getElementById("user").innerHTML = hostnName;
+    </script>
+</body>
+</html>

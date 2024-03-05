@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Status-NoorByte WiFi</title>
+    <link rel="stylesheet" href="css/custom.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/custom.js"></script>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+     <script language="JavaScript">
+        function openLogin(){
+            if (window.name != 'hotspot_logout') return true;
+            open('$(link-login)', '_blank', '');
+            window.close();
+            return false;
+        }
+    </script>
+    <script>
+        var time = "$(session-time-left)";
+        time = time.replace(/w/g,'w ').replace(/d/g,'d ').replace(/h/g,'h ').replace(/m/g,'m ').replace(/s/g,'s ');
+        waktu = time.replace(/w /g,'Minggu').replace(/d /g,'Hari').replace(/h /g,'Jam').replace(/m /g,'Menit').replace(/s /g,'Detik');
+        sisawaktu = waktu.replace(/Minggu/g,'Minggu ').replace(/Hari/g,'Hari ').replace(/Jam/g,'Jam ').replace(/Menit/g,'Menit ').replace(/Detik/g,'Detik ');
+        document.getElementById("SisaWaktu").innerHTML = sisawaktu;  
+    </script>
+    <link rel="icon" href="img/favicon.png" />
+</head>
+<body class="utama">
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto box-semua">
+                    $(if login-by == 'trial')
+                    <div style="margin:10px auto 0px;text-align: center;">
+                        <h3>Terima Kasih</h3>
+                        <i style="font-size:50px;border-radius:50%;" class="icon icon-user-circle">&#xf2bd;</i> 
+                        <h3 style="margin-top: 10px;">Trial User</h3>
+                    </div>
+                    $(elif login-by != 'mac')
+                    <div style="margin:10px auto 0px;text-align: center;">
+                        <h3>Terima Kasih</h3>
+                        <i style="font-size:50px;border-radius:50%;" class="icon icon-user-circle">&#xf2bd;</i> 
+                        <h3 style="margin-top: 10px;" id="user">$(username)</h3>
+                    </div>
+                    $(endif)
+                    <div class="bg-success w-100 text-center p-2" style="border-radius:3px;color:#ffffff;font-weight: 600;">
+                    $(if session-time-left)
+                    <span style="padding:10px;margin:0 auto 10px;color:white;"><i class="icon icon-clock">&#xe80f;</i> Sisa Waktu 
+                         : <span id="SisaWaktu"></span>
+                    </span>
+                    $(else)
+                    <span style="padding:10px;margin:0 auto 10px;color:white;"><i class="icon icon-clock">&#xe80f;</i> Sisa Waktu 
+                         : No Limit
+                    </span>
+                    $(endif)
+                    </div>
+                    <form action="$(link-login)" name="login" onsubmit="return openLogin()">
+                        <!-- info -->
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th align="center"><i class="icon icon-qrcode">&#xe814;</i> MAC </th>
+                                    <td>$(mac)</td>
+                                </tr>
+                                <tr>
+                                    <th align="center"><i class="icon icon-globe">&#xe812;</i> Terhubung </th>
+                                    <td id="konek"></td>
+                                </tr>
+                                $(if remain-bytes-total)
+                                <tr>
+                                    <th align="center"><i class="icon icon-battery-3">&#xf241;</i> Sisa Kuota </th>
+                                    <td>$(remain-bytes-total-nice)</td>
+                                </tr>
+                                $(endif)
+                                <tr>
+                                    <th class="text-center" colspan="2" style="margin-left: 5px;"><i>* Terima kasih telah menggunakan layanan NoorByte.</i></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- end info -->
+                        <!-- Login -->
+                        <p style="font-size:10px; text-align:center;margin:5px auto;">Tombol <b>LOGIN</b> direct ke halaman login.</p>
+                        <div class="d-grid gap-2 col-6 mx-auto mb-3">
+                        <button class="btn btn-outline-success" type="submit"> <i class="icon icon-reply-all">&#xf122;</i> LOGIN</button>
+                        </div>
+                        <!-- end Login -->
+                    </form>
+                </div>
+            </div>
+
+             <!-- copyright -->
+            <footer>
+                <div class="text-center text-black-50 m-2" style="font-size: 80%">
+                &copy; 2024 NoorByte WiFi. All Rights Reserved.
+                </div>
+            </footer>
+            <!-- end copyright -->
+        </div>
+    </main>
+    <script>
+        setTimeout(function() {
+            window.location.href = "login.html";
+        }, 10000); // Redirect after 10 seconds
+    </script>
+    <script>
+        var time = "$(session-time-left)";
+        var konek = "$(uptime)";
+        var refresh = "$(refresh-timeout)";
+
+        // Replacing abbreviations with full words and adding spaces
+        time = time.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+        konek = konek.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+        refresh = refresh.replace(/w/g, 'w ').replace(/d/g, 'd ').replace(/h/g, 'h ').replace(/m/g, 'm ').replace(/s/g, 's ');
+
+        // Replacing abbreviations with full words
+        var waktu = time.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+        var konekWaktu = konek.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+        var refreshWaktu = refresh.replace(/w /g, 'Minggu').replace(/d /g, 'Hari').replace(/h /g, 'Jam').replace(/m /g, 'Menit').replace(/s /g, 'Detik');
+
+        // Adding separators between each time unit
+        var sisawaktu = waktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+        var konekSisawaktu = konekWaktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+        var refreshSisawaktu = refreshWaktu.replace(/Minggu/g, ' Minggu • ').replace(/Hari/g, ' Hari • ').replace(/Jam/g, ' Jam • ').replace(/Menit/g, ' Menit • ').replace(/Detik/g, ' Detik');
+
+        // Setting inner HTML of elements
+        document.getElementById('konek').innerHTML = konekSisawaktu;
+        document.getElementById('SisaWaktu').innerHTML = sisawaktu;
+        document.getElementById('refresh').innerHTML = refreshSisawaktu;
+    </script>
+</body>
+</html>

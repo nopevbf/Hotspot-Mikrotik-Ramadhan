@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NoorByte WiFi</title>
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="icon" href="img/favicon.png" />
+    <style>
+      a {
+        color: rgb(204, 0, 0);
+        text-decoration: none;
+      }
+      body {
+        text-align: center;
+        font-size: 1em;
+        line-height: 1.42857143;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        margin-bottom: 1em;
+      }
+      p {
+        margin: 0 auto;
+      }
+    </style>
+    <style>
+      .circle-loader {
+        margin-bottom: 2.5em;
+        border: 5px solid rgba(0, 0, 0, 0.2);
+        border-left-color: rgb(204, 0, 0);
+        animation: loader-spin 1.2s infinite linear;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        border-radius: 50%;
+        width: 7em;
+        height: 7em;
+      }
+      .load-complete {
+        -webkit-animation: none;
+        animation: none;
+        border-color: rgb(204, 0, 0);
+        transition: border 500ms ease-out;
+      }
+      .caution {
+        display: none;
+      }
+      .caution.draw:after {
+        animation-duration: 800ms;
+        animation-timing-function: ease;
+        animation-name: caution;
+        transform: scaleX(-1) rotate(135deg);
+      }
+      .caution:after {
+        opacity: 1;
+        height: 3.5em;
+        width: 1.75em;
+        transform-origin: left top;
+        border-right: 5px solid rgb(204, 0, 0);
+        border-top: 5px solid rgb(204, 0, 0);
+        content: "";
+        left: 1.75em;
+        top: 3.5em;
+        position: absolute;
+      }
+      @keyframes loader-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes caution {
+        0% {
+          height: 0;
+          width: 0;
+          opacity: 1;
+        }
+        20% {
+          height: 0;
+          width: 1.75em;
+          opacity: 1;
+        }
+        40% {
+          height: 3.5em;
+          width: 1.75em;
+          opacity: 1;
+        }
+        100% {
+          height: 3.5em;
+          width: 1.75em;
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="utama" onload="startClock()">
+      <div class="container">
+        <div class="box-semua" style="padding: 20px;">
+          <h1>Error</h1>
+        <div id="circle" class="circle-loader">
+          <div id="caution" class="caution draw"></div>
+        </div>
+        <p class="error">$(error)</p>
+        <p><a href="$(link-login)">Kembali ke halaman login</a></p>
+        </div>
+    </main>
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script>
+      setTimeout(function () {
+        $("#circle").addClass("load-complete");
+      }, 1000);
+      setTimeout(function () {
+        document.getElementById("caution").style.display = "block";
+      }, 1000);
+    </script>
+  </body>
+</html>
